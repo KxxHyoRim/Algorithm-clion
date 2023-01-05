@@ -70,5 +70,13 @@ int main() {
         pq.pop();
     }
 
+    // 아니.. 위에 코드로 하면 잘 출력되는데, 아래 코드로 하면 출력이 안됨
+    // 대체 무엇이 문제인지 알수가 없음
+//    cout << pq.size() << "\n";
+//    for (int i = 0; i < pq.size(); i++) {
+//        cout << -pq.top() << "\n";
+//        pq.pop();
+//    }
+
     return 0;
 }

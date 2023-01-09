@@ -162,3 +162,8 @@ int main() {
 
     return 0;
 }
+// vector size가 원래는 unsigned long type임
+// 그대로 백준 돌리면, 컴파일 에러가 발생하기 떄문에
+// 명시적으로 (int)로 캐스팅을 해줘야 한다
+
+// #include <algorithm> 신경쓰기 =

@@ -1,16 +1,14 @@
 #include <iostream>
 #include <queue>
 #include <climits>
-#include <map>
 
 #define INF INT_MAX
 
 using namespace std;
 
 int V, E, s, u, v, w;
-vector<map<int, int>> weight;
-vector<bool> visited;
-vector<int> result;
+vector<vector<pair<int, int>>> graph;
+int result[20001];
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -18,37 +16,35 @@ int main() {
     cout.tie(NULL);
 
     cin >> V >> E >> s;
-    weight.resize(E + 1);
-    visited.resize(V + 1);
-    result.resize(V + 1);
+    graph.resize(V + 1);
 
     for (int i = 0; i < E; i++) {
         cin >> u >> v >> w;
-        weight[u].emplace(v, w);
+        graph[u].emplace_back(v, w); // u에서 v까지 하는데 w만큼
     }
 
-    for (int i = 0; i <= V; i++) { result[i] = INF; }
+    for (int i = 1; i <= V; i++) { result[i] = INF; }
     result[s] = 0;
 
-    for (int i = 1; i <= V; i++) {
+    priority_queue<pair<int, int>> pq;
+    pq.emplace(0, s);
 
-        // 1. s를 정함
-        int minDist = INF;
-        for (int j = 1; j <= V; j++) {
-            if (visited[j]) continue;
-            if (result[j] < minDist) {
-                minDist = result[j];
-                s = j;
+    while (!pq.empty()) {
+        w = -pq.top().first;
+        s = pq.top().second;
+        pq.pop();
+
+        if (result[s] < w) continue;   // ? 원래 봤던건 이미 안보겠다..
+
+        for (int i = 0; i < graph[s].size(); i++) {
+            int nw = graph[s][i].second;
+            int ns = graph[s][i].first;
+            int newPath = result[s] + nw;
+            if (newPath < result[ns]) {
+                result[ns] = newPath;
+                pq.emplace(-newPath, ns);
             }
         }
-
-        // s와 인접한 node queue 추가
-        for (auto iter: weight[s]) {
-            int ns = iter.first;
-            result[ns] = min(result[ns], result[s] + weight[s].find(ns)->second);
-        }
-
-        visited[s] = true;
     }
 
     for (int i = 1; i <= V; i++) {

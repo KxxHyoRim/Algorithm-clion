@@ -1,6 +1,9 @@
 # Project exclude paths
 /cmake-build-debug/
 
+test.cpp
+CMakeLists.txt
+
 .idea/*
 .idea/Algorithm.iml
 .idea/misc.xml

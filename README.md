@@ -77,15 +77,37 @@ Thanks to [@hansh0101](https://github.com/hansh0101)
 
     ```
 
-- vector & queue 같이 쓰기 
+- vector & queue 같이 쓰기
 
   ```c++
   vector<queue<int>> /*variableName*/ (/* size */, queue<int>());
   ```
-  
+
 - vector 정렬, unique
-  
+
   ```
   sort(v.begin(), v.end())
   unique(v.begin(), v.end())
   ```
+
+
+- bfs문제 풀 때, 시작지점이 여러개인 경우, 전역 queue를 사용한다
+
+
+- 아래 코드의 문제점은, for문을 돌때마다 `pq.size()`가 매번 바뀌기때문에, 정상적인 출력이 안된다.
+  pq의 각 vertex를 확인하려면 `while(!pq.empty())` 사용하자.
+  ```c++
+  cout << pq.size() << "\n";
+  for (int i = 0; i < pq.size(); i++) {
+      cout << -pq.top() << "\n";
+      pq.pop();
+  }
+  ```
+
+
+- DP에서 `min()` check할 때 초기값이 0인것을 주의하자
+
+
+- Dijkstra
+  - [기본구현](https://github.com/ndb796/python-for-coding-test/blob/master/9/1.cpp)
+  - [심화구현(Priority Queue)](https://github.com/ndb796/python-for-coding-test/blob/master/9/2.cpp#L25)

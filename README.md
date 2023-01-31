@@ -1,5 +1,33 @@
 # Algorithm (c++)
 
+- `cin`과 `getline()`
+  - 문제 중에 한줄의 입력변수의 수가 정해져있지 않는 경우가 있음
+    (ex) tree의 node가 operator면 left, right node의 정보가 나오고, node가 operand라면 나오지 않음
+  - 이럴 경우, getline()을 통해 한줄을 입력받고 seperator로 몇개의 문자가 주어졌는지 직접 파약해야함
+  - c++에는 java와 다르게 split함수가 없어서 직접 구현해야함..^^;
+  - 함수 코드 [(출처)](https://ssungkang.tistory.com/entry/C-string-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%82%98%EB%88%84%EB%8A%94-split)
+    
+    ```c++
+
+    #include <vector>
+    #include <sstream>
+
+    int main(){
+      vector<string> result = split(line, ' ');
+    }
+
+    vector<string> split(string input, char delimiter) {
+        vector<string> answer;
+        stringstream ss(input);
+        string temp;
+        while (getline(ss, temp, delimiter)) 
+            answer.push_back(temp);
+        return answer;
+    }
+
+    ```
+  
+
 - 배열 초기화 신경쓰기. 안하면 dummy값 들어가더라~
   ```c++
     int limit[101] = {0,};

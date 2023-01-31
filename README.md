@@ -1,6 +1,7 @@
 # Algorithm (c++)
 
 - `cin`과 `getline()`
+  - **cin**은 "\n"빼고 입력받음. 반면 **getline()** 은 "...\n"까지 입력받음.
   - 문제 중에 한줄의 입력변수의 수가 정해져있지 않는 경우가 있음
     (ex) tree의 node가 operator면 left, right node의 정보가 나오고, node가 operand라면 나오지 않음
   - 이럴 경우, getline()을 통해 한줄을 입력받고 seperator로 몇개의 문자가 주어졌는지 직접 파약해야함
@@ -27,6 +28,18 @@
 
     ```
   
+- `constexpr` 는 무엇인가!??
+  - The keyword constexpr was introduced in C++11 and improved in C++14. It means constant expression. Like const, it can be applied to variables: A compiler error is raised when any code attempts to modify the value. Unlike const, constexpr can also be applied to functions and class constructors. constexpr indicates that the value, or return value, is constant and, where possible, is computed at compile time. [(출처:Microsoft)](https://learn.microsoft.com/en-us/cpp/cpp/constexpr-cpp?view=msvc-170)
+  - 상수임
+  - `const`와 달리 컴파일시에 검사하기 때문에 에러가 있다면, 컴파일시에 에러를 잡아낸다
+  - `const`와 달리 함수, class 생성자에서도 사용가능
+  - 아래와 같이 사용가능
+  
+    ```c++
+      constexpr int n = 5;
+      const std::vector< std::pair< int, int >> edges = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 4}, {3, 2}, {4, 3}};
+    ``` 
+
 
 - 배열 초기화 신경쓰기. 안하면 dummy값 들어가더라~
   ```c++

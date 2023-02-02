@@ -39,14 +39,24 @@
       constexpr int n = 5;
       const std::vector< std::pair< int, int >> edges = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 4}, {3, 2}, {4, 3}};
     ``` 
-
-
-- 배열 초기화 신경쓰기. 안하면 dummy값 들어가더라~
+    
+- local 변수 배열 초기화 신경쓰기 (Global은 알아서 0)
   ```c++
     int limit[101] = {0,};
     int calc[101] = {0,};
   ```
   
+- 2차원 배열 초기화
+  ```c++
+    /* before */
+    for (auto &i: map)
+      memset(i, 0, sizeof(int) * 300);
+      
+    /* after */
+    memset(map, 0, sizeof(map));
+  ```
+
+
 - 빠른입출력
   ```c++
     ios_base::sync_with_stdio(false);

@@ -162,3 +162,15 @@ Thanks to [@hansh0101](https://github.com/hansh0101)
 - Dijkstra
   - [기본구현](https://github.com/ndb796/python-for-coding-test/blob/master/9/1.cpp)
   - [심화구현(Priority Queue)](https://github.com/ndb796/python-for-coding-test/blob/master/9/2.cpp#L25)
+  
+- Kruskal (최소비용으로 node연결 시키기)
+  1. int parent[n] 배열 생성
+  2. 자기자신의 parent를 자신으로 설정  //parent[0] = 0, parent[1] = 1 ..
+  3. Edge 오름차순 정렬
+  4. Cycle이 형성되지 않는다면(edge의 두 node의 parent가 다르다면) edge추가
+  - union-find 개념이 필요함
+  
+- 소수점 제거
+  - 문제에서 실수값을 소수점 첫째 자리에서 반올림하여 정수로 나타내고 싶을 경우 `round()`를 활용한다
+  - `cout << round(double값)` 이렇게 할경우 e가 함께 나와 출력형식에 맞지 않게 된다
+  - `cout << (long long) round(double값)` -> casting을 활용해 해결할 수 있다

@@ -1,11 +1,62 @@
 # Algorithm (c++)
 
-- 배열 초기화 신경쓰기. 안하면 dummy값 들어가더라~
+- `cin`과 `getline()`
+  - **cin**은 "\n"빼고 입력받음. 반면 **getline()** 은 "...\n"까지 입력받음.
+  - 문제 중에 한줄의 입력변수의 수가 정해져있지 않는 경우가 있음
+    (ex) tree의 node가 operator면 left, right node의 정보가 나오고, node가 operand라면 나오지 않음
+  - 이럴 경우, getline()을 통해 한줄을 입력받고 seperator로 몇개의 문자가 주어졌는지 직접 파약해야함
+  - c++에는 java와 다르게 split함수가 없어서 직접 구현해야함..^^;
+  - 함수 코드 [(출처)](https://ssungkang.tistory.com/entry/C-string-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%82%98%EB%88%84%EB%8A%94-split)
+    
+    ```c++
+
+    #include <vector>
+    #include <sstream>
+
+    int main(){
+      vector<string> result = split(line, ' ');
+    }
+
+    vector<string> split(string input, char delimiter) {
+        vector<string> answer;
+        stringstream ss(input);
+        string temp;
+        while (getline(ss, temp, delimiter)) 
+            answer.push_back(temp);
+        return answer;
+    }
+
+    ```
+  
+- `constexpr` 는 무엇인가!??
+  - The keyword constexpr was introduced in C++11 and improved in C++14. It means constant expression. Like const, it can be applied to variables: A compiler error is raised when any code attempts to modify the value. Unlike const, constexpr can also be applied to functions and class constructors. constexpr indicates that the value, or return value, is constant and, where possible, is computed at compile time. [(출처:Microsoft)](https://learn.microsoft.com/en-us/cpp/cpp/constexpr-cpp?view=msvc-170)
+  - 상수임
+  - `const`와 달리 컴파일시에 검사하기 때문에 에러가 있다면, 컴파일시에 에러를 잡아낸다
+  - `const`와 달리 함수, class 생성자에서도 사용가능
+  - 아래와 같이 사용가능
+  
+    ```c++
+      constexpr int n = 5;
+      const std::vector< std::pair< int, int >> edges = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 4}, {3, 2}, {4, 3}};
+    ``` 
+    
+- local 변수 배열 초기화 신경쓰기 (Global은 알아서 0)
   ```c++
     int limit[101] = {0,};
     int calc[101] = {0,};
   ```
   
+- 2차원 배열 초기화
+  ```c++
+    /* before */
+    for (auto &i: map)
+      memset(i, 0, sizeof(int) * 300);
+      
+    /* after */
+    memset(map, 0, sizeof(map));
+  ```
+
+
 - 빠른입출력
   ```c++
     ios_base::sync_with_stdio(false);
@@ -111,3 +162,15 @@ Thanks to [@hansh0101](https://github.com/hansh0101)
 - Dijkstra
   - [기본구현](https://github.com/ndb796/python-for-coding-test/blob/master/9/1.cpp)
   - [심화구현(Priority Queue)](https://github.com/ndb796/python-for-coding-test/blob/master/9/2.cpp#L25)
+  
+- Kruskal (최소비용으로 node연결 시키기)
+  1. int parent[n] 배열 생성
+  2. 자기자신의 parent를 자신으로 설정  //parent[0] = 0, parent[1] = 1 ..
+  3. Edge 오름차순 정렬
+  4. Cycle이 형성되지 않는다면(edge의 두 node의 parent가 다르다면) edge추가
+  - union-find 개념이 필요함
+  
+- 소수점 제거
+  - 문제에서 실수값을 소수점 첫째 자리에서 반올림하여 정수로 나타내고 싶을 경우 `round()`를 활용한다
+  - `cout << round(double값)` 이렇게 할경우 e가 함께 나와 출력형식에 맞지 않게 된다
+  - `cout << (long long) round(double값)` -> casting을 활용해 해결할 수 있다

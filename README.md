@@ -174,3 +174,35 @@ Thanks to [@hansh0101](https://github.com/hansh0101)
   - 문제에서 실수값을 소수점 첫째 자리에서 반올림하여 정수로 나타내고 싶을 경우 `round()`를 활용한다
   - `cout << round(double값)` 이렇게 할경우 e가 함께 나와 출력형식에 맞지 않게 된다
   - `cout << (long long) round(double값)` -> casting을 활용해 해결할 수 있다
+  
+- Set
+
+
+  - 값을 가져오고 싶다면 iterator와 *를 활용하자
+
+
+    - 첫번째 set의 값을 가져오기 위해서는 `int first = *set.begin();`
+
+  - 집합인데 중복을 허용하고 싶다면 `multiset`을 사용하자
+
+
+    - `insert("a")` `insert("a")` 를 실행하면, `multiset = {"a", "a"}`가 된다
+
+    - `erase("a")` 를 수행하면, 두개의 a가 모두 삭제된다
+
+    - 하나만 삭제하고 싶은 경우 iterator를 활용해야한다
+
+      ```c++
+      void Erase_Val(multiset<int> ms) {    // { 1, 1, 2 }
+          ms.erase(1);  // { 2 }
+      }
+      
+      void Erase_Iter(multiset<int> ms) {    // { 1, 1, 2 }
+          multiset<int>::iterator it = ms.find(1);
+          ms.erase(it); // { 1, 2 }
+      }
+      ```
+
+- Map
+  - `Map<string, int> m`형식으로 map을 생성하면 
+    - `m["str"] += 1;` 이렇게 사용가능하다

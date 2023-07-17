@@ -234,6 +234,9 @@
           ms.erase(it);   									// { 1, 2 }
       }
       ```
+    - set iterator 안에서 erase할 때는, `it = it.erase("지우는거")` 이렇게 해야 메모리상 문제 없음`exc_bad_access`
+
+
 
 - **`Map`**
 

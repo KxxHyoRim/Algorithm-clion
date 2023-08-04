@@ -32,6 +32,15 @@
     
     ```
 
+- 입력이 몇줄인지 모르는 경우
+  ```c++
+    string s, t, space;
+    while(cin >> s >> t ){
+      //
+    }
+  ```
+  
+
 - `constexpr` 는 무엇인가!??
 
   - The keyword constexpr was introduced in C++11 and improved in C++14. It means constant expression. Like const, it can be applied to variables: A compiler error is raised when any code attempts to modify the value. Unlike const, constexpr can also be applied to functions and class constructors. constexpr indicates that the value, or return value, is constant and, where possible, is computed at compile time. [(출처:Microsoft)](https://learn.microsoft.com/en-us/cpp/cpp/constexpr-cpp?view=msvc-170)

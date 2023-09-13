@@ -283,7 +283,7 @@
     }
     ```
 
-- `map` vs `unordered_map`
+- **`map` vs `unordered_map`**
 -  map:
 
     - Based on Red-Black Tree.
@@ -292,7 +292,7 @@
     - Insertion and deletion take **O(log n) time.**
 
 - unordered_map:
-
+   - **별도로 `#include<unordered_map>` 해주어야함**
    - Based on Hash Table.
    - **Does not maintain a specific order** for keys.
    - Provides fast insertion and deletion, typically **O(1)** on average.

@@ -252,6 +252,11 @@
   - `Map<string, int> m`형식으로 map을 생성하면 
     - `m["str"] += 1;` 이렇게 사용가능하다
   - map은 기본적으로 key를 기준으로 정렬된다
+  - 이미 존재하는 <k, v>가 있는데 value 만 수정하고 싶은 경우
+     - `emplace(k, v)` 시 v가 변경되지 않고 기존 값으로 유지
+     - `map[k] = v`시 v가 정상적으로 변경
+   - 새로운 <k,v>를 추가하고자 하는 경우
+     - `emplace(k, v)`, `map[k] = v` 둘다 정상 동작
 
 - **`Iterator`**
 
@@ -278,5 +283,19 @@
     }
     ```
 
+- `map` vs `unordered_map`
+-  map:
+
+    - Based on Red-Black Tree.
+    - Stores key-value pairs in **sorted order.**
+    - Offers efficient range-based searches and operations.
+    - Insertion and deletion take **O(log n) time.**
+
+- unordered_map:
+
+   - Based on Hash Table.
+   - **Does not maintain a specific order** for keys.
+   - Provides fast insertion and deletion, typically **O(1)** on average.
+   - May have slightly slower range-based operations.
     
 
